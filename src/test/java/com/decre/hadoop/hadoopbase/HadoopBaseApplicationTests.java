@@ -131,7 +131,7 @@ public class HadoopBaseApplicationTests {
      */
     @Test
     public void testGetFileBlockLocations() throws IOException {
-        BlockLocation[] locations = hdfsService.getFileBlockLocations("/testDir/user.txt");
+        BlockLocation[] locations = hdfsService.getFileBlockLocations("/testDir/hadoop2.txt");
 
         if (locations != null && locations.length > 0) {
             for (BlockLocation location : locations) {

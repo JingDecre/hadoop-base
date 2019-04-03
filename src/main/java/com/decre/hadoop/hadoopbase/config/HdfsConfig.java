@@ -1,7 +1,6 @@
 package com.decre.hadoop.hadoopbase.config;
 
 import com.decre.hadoop.hadoopbase.service.HdfsService;
-import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,7 @@ public class HdfsConfig {
 
     @Bean
     public HdfsService getHbaseService() {
-        org.apache.hadoop.conf.Configuration conf = HBaseConfiguration.create();
+        org.apache.hadoop.conf.Configuration conf = new org.apache.hadoop.conf.Configuration();
         conf.set("fs.defaultFS", defaultHdfsUri);
         return new HdfsService(conf, defaultHdfsUri);
     }
