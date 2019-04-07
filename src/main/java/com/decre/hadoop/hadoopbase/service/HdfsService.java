@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
+import org.apache.hadoop.mapreduce.Job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,11 +36,20 @@ public class HdfsService {
     }
 
     /**
+     * 获取任务对象
+     * @return
+     * @throws IOException
+     */
+    public Job getJob() throws IOException {
+        return Job.getInstance(conf);
+    }
+
+    /**
      * 获取HDFS文件系统
      *
      * @return org.apache.hadoop.fs.FileSystem
      */
-    private FileSystem getFileSystem() throws IOException {
+    public FileSystem getFileSystem() throws IOException {
         return FileSystem.get(conf);
     }
 
