@@ -31,10 +31,10 @@ public class HadoopBaseApplicationTests {
      */
     @Test
     public void testMkdir() {
-        boolean result1 = hdfsService.mkdir("/testDir");
+        boolean result1 = hdfsService.mkdir("/input");
         System.out.println("创建结果：" + result1);
 
-        boolean result2 = hdfsService.mkdir("/testDir/subDir");
+        boolean result2 = hdfsService.mkdir("/out");
         System.out.println("创建结果：" + result2);
     }
 
@@ -43,9 +43,9 @@ public class HadoopBaseApplicationTests {
      */
     @Test
     public void testUploadFile() {
-        hdfsService.uploadFileToHdfs("D:\\ITape\\test\\hadoop1.txt", "/testDir");
-        hdfsService.uploadFileToHdfs(false, true, "D:\\ITape\\test\\hadoop2.txt", "/testDir");
-        hdfsService.uploadFileToHdfs("D:\\ITape\\test\\hadoop3.txt", "/testDir/subDir");
+        hdfsService.uploadFileToHdfs("D:\\ITape\\test\\input\\hadoop1.txt", "/input");
+        //hdfsService.uploadFileToHdfs(false, true, "D:\\ITape\\test\\hadoop2.txt", "/testDir");
+        hdfsService.uploadFileToHdfs("D:\\ITape\\test\\input\\hadoop3.txt", "/input");
 
     }
 
@@ -69,7 +69,7 @@ public class HadoopBaseApplicationTests {
      */
     @Test
     public void testDownloadFile() {
-        hdfsService.downloadFileFromHdfs("/testDir/hadoop1.txt", "D:/ITape/test/download1.txt");
+        hdfsService.downloadFileFromHdfs("/output/part-r-00000", "wordcount1");
     }
 
     /**
@@ -79,7 +79,7 @@ public class HadoopBaseApplicationTests {
      */
     @Test
     public void testOpen() throws IOException {
-        FSDataInputStream inputStream = hdfsService.open("/testDir/hadoop1.txt");
+        FSDataInputStream inputStream = hdfsService.open("/output/part-r-00000");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line = null;
@@ -118,7 +118,8 @@ public class HadoopBaseApplicationTests {
      */
     @Test
     public void testDelete() {
-        hdfsService.delete("/testDir/hadoop1.txt");
+        hdfsService.delete("/input/hadoop1.txt");
+        hdfsService.delete("/input/hadoop3.txt");
 
         //再次遍历
         testListFiles();
