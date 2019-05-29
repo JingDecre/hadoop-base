@@ -1,5 +1,6 @@
-package com.decre.hadoop.hadoopbase.entity;
+package com.decre.common.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,13 +9,13 @@ import java.util.Date;
  * @since 1.0.0
  * Descirption:
  */
-public class User {
+public class User implements Serializable {
 
-    private String password;
-
-    private Integer id;
+    private Long id;
 
     private String username;
+
+    private String password;
 
     private String mobile;
 
@@ -27,6 +28,14 @@ public class User {
     private Integer status;
 
 
+    public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
 
     public String getPassword() {
         return password;
@@ -36,11 +45,11 @@ public class User {
         this.password = password;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
